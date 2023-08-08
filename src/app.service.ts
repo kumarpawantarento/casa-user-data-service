@@ -143,4 +143,17 @@ export class AppService {
     );
     return res.recordset[0];
   }
+  async getStudentRegistrationCertificateByRollnumberFromCasa(id: string) {
+      const db = await this.dbConnection.connect();
+      const res = await db.query(`select  t4.Address as CollegeAddress , t5.Title_Registration as NameRegistration, t1.EnrollmentNo as RegistrationNo, t1.StudentFullName as Name, t1.MotherFullName as mother, t1.FatherFullName as father, t1.Gender as gender, t1.ContactNo as mobile, t1.EmailId as email, t1.Address as Address, t1.DateOfBirth as dob, t1.District as place, t1.AdmissionDate as dated,  t4.ProposedCenterName as trainingCenter, t1.RollNo as rollNumber, t4.Code as centerCode, t1.CenterKey as centerKey, t3.FinalYearRollNo as finalYearRollNo, t3.JoiningMM as JoiningMonth, t3.JoiningYYYY as JoiningYear, t3.PassingMM as passingMonth , t3.PassingYYYY as passingYear ,t6.Name as ExaminingBody, t5.Duration_Month as durationMonth, t5.Duration_Year as durationYear, t3.RegdUnderPart as regPart, t2.RegistrationNo as RegNo, t5.Name as courseName,  t2.RegistrationDate from Master_StudentProfile t1 join Master_StudentProfile_Registration t2 on t1.StudentProfileKey = t2.StudentProfileKey join Master_StudentProfile_Registration_UPSMF_MidWife t3 on t2.RegisteredStudentProfileKey = t3.RegisteredStudentProfileKey join Master_CollegeRegistration t4 on t1.CenterKey = t4.CollegeRegistrationKey  join Master_Course t5 on t1.CourseKey = t5.CourseKey join Master_University_StudentRegistration t6 on t3.UniversityKey = t6.University_StudentRegistrationKey where t1.RollNo ='${id}'`,
+      );
+      return res.recordset[0];
+    }
+
+    async getStudentRegistrationCertificateByEnrollmentnumberFromCasa(id: string) {
+          const db = await this.dbConnection.connect();
+          const res = await db.query(`select  t4.Address as CollegeAddress , t5.Title_Registration as NameRegistration, t1.EnrollmentNo as RegistrationNo, t1.StudentFullName as Name, t1.MotherFullName as mother, t1.FatherFullName as father,t1.Gender as gender,t1.ContactNo as mobile,t1.EmailId as email, t1.Address as Address, t1.DateOfBirth as dob, t1.District as place, t1.AdmissionDate as dated,  t4.ProposedCenterName as trainingCenter,  t4.Code as centerCode, t1.RollNo as rollNumber, t1.CenterKey as centerKey,t3.FinalYearRollNo as finalYearRollNo, t3.JoiningMM as JoiningMonth, t3.JoiningYYYY as JoiningYear, t3.PassingMM as passingMonth , t3.PassingYYYY as passingYear ,t6.Name as ExaminingBody, t5.Duration_Month as durationMonth, t5.Duration_Year as durationYear, t3.RegdUnderPart as regPart, t2.RegistrationNo as RegNo,  t5.Name as courseName, t2.RegistrationDate from Master_StudentProfile t1 join Master_StudentProfile_Registration t2 on t1.StudentProfileKey = t2.StudentProfileKey join Master_StudentProfile_Registration_UPSMF_MidWife t3 on t2.RegisteredStudentProfileKey = t3.RegisteredStudentProfileKey join Master_CollegeRegistration t4 on t1.CenterKey = t4.CollegeRegistrationKey  join Master_Course t5 on t1.CourseKey = t5.CourseKey join Master_University_StudentRegistration t6 on t3.UniversityKey = t6.University_StudentRegistrationKey where t1.EnrollmentNo ='${id}'`,
+          );
+          return res.recordset[0];
+       }
 }
