@@ -33,6 +33,15 @@ export class AppController {
   getStudent(@Param() params) {
     return this.appService.getStudentById(params.id);
   }
+    @Get('regCertificateByRollNo/:id')
+  getStudentRegistrationCertificateByRollnumberFromCasa(@Param() params) {
+    return this.appService.getStudentRegistrationCertificateByRollnumberFromCasa(params.id);
+  }
+
+    @Get('regCertificateByEnrollmentNo/:id')
+    getStudentRegistrationCertificateByEnrollmentnumberFromCasa(@Param() params) {
+      return this.appService.getStudentRegistrationCertificateByEnrollmentnumberFromCasa(params.id);
+  }
 
   @Get('tutor/:id')
   getTutor(@Param() params) {
