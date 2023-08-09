@@ -35,8 +35,8 @@ const mssqlProvider = {
   provide: MSSQL_CONNECTION,
   useValue: new ConnectionPool({
     user: 'sa',
-    server: 'localhost',
-    database: 'test',
+    server: '10.0.2.17',
+    database: 'CASA_LIVE',
     password: 'Pass@word',
     port: 1433,
     options: {

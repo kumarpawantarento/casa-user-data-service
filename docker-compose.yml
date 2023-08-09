@@ -36,5 +36,10 @@ services:
       - "1433:1433"
     volumes:
       - mssql:/var/opt/mssql/data
+
+  casa-user-data:
+    image: casa-user-data-service:latest
+    ports:
+      - '3000:3000'
 volumes:
   mssql:
